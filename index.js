@@ -3,6 +3,8 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import sellerRoutes from "./routes/sellerRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 
 const app = express();
@@ -10,6 +12,9 @@ dotenv.config();
 app.use(bodyParser.json({limit:"30mb",extended:true}));
 app.use(bodyParser.urlencoded({limit:"30mb",extended:true}));
 app.use(cors());
+
+app.use("/api/seller",sellerRoutes);
+app.use("/api/user",userRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.get("/",(req,res)=>{
